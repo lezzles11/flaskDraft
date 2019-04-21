@@ -1,0 +1,45 @@
+{% extends "bootstrap/layout.html" %}
+
+{% block heading %}
+    First Page
+{% endblock %}
+
+{% block body %}
+      <p>Designing my curriculum for a start-up</p>
+    <p>The question I had for myself was - what are the basic skills that I need to ensure that I can run a start up efficiently? </p>
+    <p> SQL - Database stuff (W3 School is AWESOME)</p>
+    <p> Get proficient at Ruby on Rails </p>
+    <p> Learn about Apache </p>
+    <p> Recognizing that it takes at least five years to make anything good. Expect all this to be shitty. Doesn't mean that you shouldn't try. </p>
+    <p> Stepping back: What is my goal in all of this? I honestly think my life goal, at least for right now, is to earn enough money for 
+        <ul>
+            <li> Earn enough money (for independence, autonomy and flexibility) 
+                <ul>
+                    <li> For me to be comfortable, I think I need to be able to have freedom </li>
+                    <li> Time to learn and think </li>
+                    <li> Time to travel and hang out with friends </li>
+                </ul>
+            </li>
+            <li> Able to grow, in some way or form 
+                <ul>
+                    <li> Looking back at what really motivated me in high school, I think it was the marketing and seeing my results, so I think one thing that is really important is to be able to see data </li>
+                    <li> Being good: Being able to sell frames (but really, selling a bigger idea) </li>
+                    <li> Computer Science + Digital Marketing - Always changing, so I always have potential to grow </li>
+                </ul>
+            </li>
+            <li> Support friends and family 
+                <ul>
+                    <li>Help dad build his website</li>
+                    <li>Help Robert build his marketing thing</li>
+                    <li>Help people in the world by sharing my own experience of computer science</li>
+                </ul>
+            
+            
+            </li>
+                
+        </ul>
+    
+    </p>
+
+    <a href="{{ url_for('more') }}">See more...</a>
+{% endblock %}

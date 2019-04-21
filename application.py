@@ -24,6 +24,10 @@ def thebeginning():
 def reflections():
     return render_template("reflections.html")
 
+@app.route("/goals")
+def goals():
+    return render_template("goals.html")
+
 
 
 
