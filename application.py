@@ -6,8 +6,6 @@ app = Flask(__name__)
 bootstrap = Bootstrap(app)
 sass(app, input_dir='assets/scss', output_dir='static/css')
 
-
-
 @app.route("/")
 def index():
     return render_template("index.html")

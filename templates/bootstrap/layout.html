@@ -3,21 +3,58 @@
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Lesley the Software Engineer</title>
-       
-       <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-   
+    
+        
+   <!--
         <link href="{{ url_for('static', filename='stylesheet.scss.css') }}" rel="stylesheet" type="text/css">
+    -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
         <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
   		<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
 		<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
-
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
+
+<body>
+    <title>Lesley the Software Engineer</title>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class='container'>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="{{ url_for('more') }}"><i class="fa fa-hand-lizard-o" aria-hidden="true"></i>Lesley the Software Engineer</a>
+            </div>
+            <div class="collapse navbar-collapse" id="main-nav-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="dropdown dropdown__hover"> The Beginning
+                            <div class="dropdown__menu">
+                                <a href="{{ url_for('more') }}">Home</a>
+                                <a href="{{ url_for('goals') }}">Goals</a>
+                                <a href="{{ url_for('thebeginning') }}">The beginning</a>
+                                <a href="{{ url_for('reflections') }}">Reflections</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="{{ url_for('more') }}">Home</a></li>
+                    <li><a href="{{ url_for('goals') }}">Goals</a></li>
+                    <li><a href="{{ url_for('thebeginning') }}">The beginning</a></li>
+                    <li><a href="{{ url_for('reflections') }}">Reflections</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+
+    <!--
     <body class="home-callout">
     	<nav class="navbar navbar-default navbar-static-top" role="navigation">
     		<div class='container'>
@@ -56,11 +93,16 @@
 
     		</div>
     	</nav>
+    -->
+
+
         <h1>{% block heading %}{% endblock %}</h1>
 
         {% block body %}
         {% endblock %}
-    </body>
+</body>
+</br>
+</br>
       <footer>
       	<p class="footer container">Hand coded by <i class="fa fa-hand-lizard-o" aria-hidden="true"></i> Lesley the Software Engineer</p>
   	   </footer>
