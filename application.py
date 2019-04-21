@@ -1,12 +1,8 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
+
 app = Flask(__name__)
-
-def create_app():
-    app = Flask(__name__)
-    Bootstrap(app)
-
-    return app
+bootstrap = Bootstrap(app)
 
 @app.route("/")
 def index():
@@ -27,6 +23,13 @@ def reflections():
 @app.route("/goals")
 def goals():
     return render_template("goals.html")
+
+@app.route("/testing")
+def testing():
+    return render_template("testing.html")
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 
