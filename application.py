@@ -14,6 +14,9 @@ def more():
 def thebeginning():
     return render_template("thebeginning.html")
 
+@app.route("/reflections")
+def reflections():
+    return render_template("reflections.html")
 
 
 
