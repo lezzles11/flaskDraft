@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Lesley the Software Engineer</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     </head>
     <body>
     	<nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -16,10 +18,24 @@
     				<span class="icon-bar"></span>
     				<span class="icon-bar"></span>
     				<span class="icon-bar"></span>
-      </button>
-
-
+    				<a href="{{ url_for('index') }}">
+        				<i class="fa fa-hand-lizard-o" aria-hidden="true"></i> 
+        				Lesley the Software Engineer
+      				</a>
+      			</button>
     		</div>
+    		<div class="collapse navbar-collapse" id="main-nav-collapse">
+      			<ul class="nav navbar-nav navbar-right">
+          			<div class="dropdown dropdown__hover"> The Beginning
+          				<li>
+              				<div class="dropdown__menu">
+                				<a href=#>Week One</a>
+                			</div>
+                		</li>
+                	</div>
+                </ul>
+            </div>
+
     		</div>
     	</nav>
         <h1>{% block heading %}{% endblock %}</h1>
@@ -27,4 +43,7 @@
         {% block body %}
         {% endblock %}
     </body>
+      <footer>
+      	<p class="footer container">Hand coded by <i class="fa fa-hand-lizard-o" aria-hidden="true"></i> Lesley the Software Engineer</p>
+  	   </footer>
 </html>
