@@ -1,8 +1,12 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
+from flaskext.sass import sass
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
+sass(app, input_dir='assets/scss', output_dir='static/css')
+
+
 
 @app.route("/")
 def index():
@@ -30,8 +34,5 @@ def testing():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
 
 
