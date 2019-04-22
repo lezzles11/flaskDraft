@@ -7,10 +7,13 @@ import os
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
+from flask_sqlalchemy import SQLAlchemy
 
-
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
+app.config.from_object('config')
+app.config.from_pyfile('config.py')
 app.config['SECRET_KEY'] = 'you-will-never-guess'
+db = SQLAlchemy(app)
 """
 app.secret_key = 'super secret string'
 login_manager = flask_login.LoginManager()
@@ -31,7 +34,7 @@ class LoginForm(FlaskForm):
 @app.route('/login')
 def login():
     form = LoginForm()
-    return render_template('login.html', title='Sign In', form=form)
+    return render_template('templates/authlogin.html', title='Sign In', form=form)
 
 
 
