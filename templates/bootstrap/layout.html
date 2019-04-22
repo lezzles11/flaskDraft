@@ -20,9 +20,51 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
 
+
+{% block nav %}
+<nav role="navigation" class="navbar navbar-default navbar-static-top">
+    <div class='container'>
+        <div class='navbar-header'>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <ul class="site-links">
+        </div>
+
+            <!--
+<li class="npr"><a href="hg"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></li>
+<li class="news"><a href="http://www.npr.org/sections/news/">News</a></li>
+<li class="arts"><a href="http://www.npr.org/sections/arts/">Arts &amp; Life</a></li>
+<li class="music"><a href="http://www.npr.org/music/">Music</a></li>
+<li class="listen"><a href="http://www.npr.org/listen/">Listen</a></li>
+-->
+        <div class="collapse navbar-collapse" id="main-nav-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="dropdown dropdown__hover"> The Beginning
+                        <div class="dropdown__menu">
+                            <a href="{{ url_for('more') }}">Home</a>
+                            <a href="{{ url_for('goals') }}">Goals</a>
+                            <a href="{{ url_for('thebeginning') }}">The beginning</a>
+                            <a href="{{ url_for('reflections') }}">Reflections</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="{{ url_for('more') }}">Home</a></li>
+                <li><a href="{{ url_for('goals') }}">Goals</a></li>
+                <li><a href="{{ url_for('thebeginning') }}">The beginning</a></li>
+                <li><a href="{{ url_for('reflections') }}">Reflections</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock nav %}
 <body>
     <title>Lesley the Software Engineer</title>
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+     <!--
         <div class='container'>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse">
@@ -54,7 +96,7 @@
         </div>
     </nav>
 
-    <!--
+   
     <body class="home-callout">
     	<nav class="navbar navbar-default navbar-static-top" role="navigation">
     		<div class='container'>

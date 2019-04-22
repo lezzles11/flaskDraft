@@ -2,15 +2,38 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from flaskext.sass import sass
 import flask_login
+import config
+import os 
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import DataRequired
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'you-will-never-guess'
+"""
 app.secret_key = 'super secret string'
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
-bootstrap = Bootstrap(app)
 users = {'foo@bar.tld': {'password': 'secret'}}
+"""
+bootstrap = Bootstrap(app)
+
 sass(app, input_dir='assets/scss', output_dir='static/css')
+
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField('Sign In')
+
+    
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('login.html', title='Sign In', form=form)
+
+
 
 @app.route("/")
 def index():
@@ -36,6 +59,9 @@ def goals():
 def testing():
     return render_template("testing.html")
 
+
+
+"""
 class User(flask_login.UserMixin):
     pass
 
@@ -101,7 +127,7 @@ def logout():
 @login_manager.unauthorized_handler
 def unauthorized_handler():
     return 'Unauthorized'
-
+"""
 if __name__ == '__main__':
     app.run(debug=True)
 
