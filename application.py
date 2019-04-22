@@ -30,7 +30,8 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
-    
+
+
 @app.route('/login')
 def login():
     form = LoginForm()
@@ -40,7 +41,7 @@ def login():
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("more.html")
 
 @app.route("/more")
 def more():
@@ -130,7 +131,12 @@ def logout():
 @login_manager.unauthorized_handler
 def unauthorized_handler():
     return 'Unauthorized'
+
+
+
 """
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
