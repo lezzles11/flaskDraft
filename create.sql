@@ -106,14 +106,24 @@ GROUP BY glasses_id HAVING COUNT (*) > 1)
 
 
 
+#escape particular characters
+#you don't want the password to be interpreter 
+#come up with ways to AVOID hacking and PROTECT data 
+#setting CONDITIONS
+#see IF THEY HAVE THE CREDITS / MOOLAH
+SELECT credits FROM account
+WHERE user_id = 1; 
 
+#updating the account afterwards
+UPDATE credits
+SET account = account - 100 
+WHERE user_id = 1; 
 
+#HOWEVER, if two people do it at the same time, they can both take it out at the same time
+#SQL TRANSACTIONS BEGIN
+#SQL TRANSACTIONS COMMIT
 
-
-
-
-
-
+#SQLALCHEMY
 
 
 
