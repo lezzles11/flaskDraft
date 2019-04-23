@@ -124,11 +124,9 @@ WHERE user_id = 1;
 #SQL TRANSACTIONS COMMIT
 
 #SQLALCHEMY
+#inputting data
 
-
-
-
-
+#reading data 
 
 
 
