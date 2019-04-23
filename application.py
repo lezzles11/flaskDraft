@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request, flash, redirect, url_for
+from app import app
 from flask_bootstrap import Bootstrap
 from flaskext.sass import sass
 from flask_mail import Mail, Message
@@ -7,7 +8,7 @@ from flask_wtf import Form, FlaskForm
 from wtforms import TextField
 from forms import ContactForm
 
-app = Flask(__name__, instance_relative_config=True)
+app = Flask(__name__, template_folder='templates', instance_relative_config=True)
 app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskDraft.sqlite'),
