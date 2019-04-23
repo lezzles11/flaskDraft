@@ -1,16 +1,7 @@
 {% extends "bootstrap/layout.html" %}
 
-{% block heading %}
-    First Page
-{% endblock %}
 
 {% block body %}
-<div class="home-callout text-center container-fluid">
-  <h1 class="nasatext">reflections</h1>
-  <h3 style="color:white;">here is how I became a <strong id="gradienthome" style="text-shadow: 1.3px 1.3px black;">software engineer</strong></h3>
-</div>
-</hr>
-  <body class=home-callout>
     <div class="reflectionlist">
       <p class="whiteredshadow"> What you do well: </p>
         <dl class="reflectiondescription dl-horizontal">
@@ -39,6 +30,4 @@
           <dt>Think simply - it's easy to down a rabbit hole but focus on what the initial problem was!! </dt>
         </dl>
     </div>  
-  
-    <a href="{{ url_for('more') }}">See more...</a>
 {% endblock %}

@@ -1,16 +1,16 @@
 {% extends "bootstrap/layout.html" %}
-
-{% block heading %}
-    First Page
-{% endblock %}
-
 {% block body %}
+
+<div>
+    
       <p>Designing my curriculum for a start-up</p>
     <p>The question I had for myself was - what are the basic skills that I need to ensure that I can run a start up efficiently? </p>
     <p> SQL - Database stuff (W3 School is AWESOME)</p>
     <p> Get proficient at Ruby on Rails </p>
     <p> Learn about Apache </p>
     <p> Recognizing that it takes at least five years to make anything good. Expect all this to be shitty. Doesn't mean that you shouldn't try. </p>
+</div>
+<div>
     <p> Stepping back: What is my goal in all of this? I honestly think my life goal, at least for right now, is to earn enough money for 
         <ul>
             <li> Earn enough money (for independence, autonomy and flexibility) 
@@ -33,13 +33,12 @@
                     <li>Help Robert build his marketing thing</li>
                     <li>Help people in the world by sharing my own experience of computer science</li>
                 </ul>
-            
-            
-            </li>
-                
+            </li>   
         </ul>
-    
     </p>
+</div>
+<div>
 
-    <a href="{{ url_for('more') }}">See more...</a>
+</div>
+
 {% endblock %}

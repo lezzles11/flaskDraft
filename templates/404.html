@@ -1,0 +1,18 @@
+{% extends "bootstrap/layout.html" %}
+{% block title %} Page Not Found {% endblock %}
+
+{% block body %}
+<div class="home-callout text-center container-fluid">
+  <h1 class="white-text" style="text-shadow: 2px 2px crimson">
+  	404 Error : What you were looking for is just not there.
+  	<a href=”{{ url_for(‘more’) }}”>go somewhere nice</a>
+  </h1>
+  <h3 style="color:white;">here is how I became a <strong id="gradienthome" style="text-shadow: 1.3px 1.3px black;">software engineer</strong></h3>
+</div>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce placerat rutrum nisi at pellentesque. Fusce orci magna, pulvinar ut ultricies id, feugiat eu elit. Nam molestie eu lacus eu fermentum. Fusce eleifend tempus sapien eu maximus. Donec lobortis dapibus magna, quis facilisis velit malesuada a. Nunc iaculis augue nulla, sed sodales dui volutpat lacinia.
+    </p>
+
+{% endblock %}
+{% block footer %}
+{% endblock %}
