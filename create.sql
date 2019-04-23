@@ -82,12 +82,27 @@ clients.glasses_id = glasses.id WHERE name = 'Alice';
 
 #forcing joins (so it prints out both tables, even if the headers dont match)
 #printing out the name and all the details 
-#LEFTJOIN
+#LEFTJOIN; OR RIGHTJOIN (print out all the tables from the LEFT (Glasses) or RIGHT (clients))
 SELECT origin, destination, name FROM glasses LEFT JOIN clients ON
 #if you take the passengers and get the flight id column, that should match the id column via flights
 clients.glasses_id = glasses.id;
 
 
+#TYPES OF JOINS
+#JOIN/INNER JOIN; LEFT OUTER JOIN; RIGHT OUTER JOIN; FULL OUTER JOIN 
+
+#INDEXES - easy way to reference to something else 
+#if i'm going to be referencing origin A LOT, it might helpful to index my origins 
+#but it SLOWS THINGS DOWN, so only index if you use it a lot 
+#also takes space
+
+
+#combining to make it easier to find stuff 
+#in the table glasses, select all clients that have greateer than one 
+SELECT * FROM glasses where id in 
+#grouping the data and counting the ones that only have greater than one 
+(SELECT glasses_id FROM clients
+GROUP BY glasses_id HAVING COUNT (*) > 1)
 
 
 
