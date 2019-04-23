@@ -7,7 +7,11 @@ from flask_wtf import Form, FlaskForm
 from wtforms import TextField
 from forms import ContactForm
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
+app.config.from_mapping(
+        SECRET_KEY='dev',
+        DATABASE=os.path.join(app.instance_path, 'flaskDraft.sqlite'),
+    )
 bootstrap = Bootstrap(app)
 sass(app, input_dir='assets/scss', output_dir='static/css')
 SECRET_KEY = os.urandom(32)
@@ -26,7 +30,7 @@ mail = Mail(app)
 
 @app.route("/")
 def more():
-	return render_template("more.html", title = "hello")
+	return render_template("home.html", title = "hello")
 
 @app.route("/weekone")
 def thebeginning():
