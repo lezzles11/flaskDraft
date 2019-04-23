@@ -14,13 +14,11 @@
  *= require_self
  */
 
- /*
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
+@import "config";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-*/
-
 
 
 body {
@@ -918,7 +916,8 @@ ul, ol, h2, h3, h4{
 
 .reflectionheader {
   text-shadow: 2px 2px crimson;
-  color: white;
+  color: black;
+  background: purple;
 }
 
 .reflectiondescription {

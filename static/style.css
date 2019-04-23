@@ -14,11 +14,12 @@
  *= require_self
  */
 
- @import 'bootstrap-sprockets';
- @import 'bootstrap';
- @import "font-awesome-sprockets";
- @import "font-awesome";
- 
+@import "bootstrap-sprockets";
+@import "config";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
  body {
    font-size: 100%;
  }
@@ -908,13 +909,15 @@
  .reflectionheader {
    text-shadow: 2px 2px crimson;
    color: white;
+   font-size: 30px;
+   background: pink;
  }
  
  .reflectiondescription {
    margin-left: 40px;
    color: beige;
    text-shadow: 1.2px 1.2px teal;
-   font-size: 23px;
+   font-size: 15px;
  }
  
  .whiteredheading {
