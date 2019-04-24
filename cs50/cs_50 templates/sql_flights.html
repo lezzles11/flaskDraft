@@ -1,0 +1,27 @@
+{% extends "bootstrap/layout.html" %}
+
+{% block title %}
+    Flights
+{% endblock %}
+
+{% block body %}
+    <h1>All Flights</h1>
+
+    <ul>
+        {% for flight in flights %}
+        <!-- For each flight in flights, create an unordered list
+       where that item is a loop - bulletted list of flight
+       clicking any flight will link me to another page about that flight -->
+            <li>
+                <!-- because of the flight ID parameter from application.py, so you need 
+                    to tell flash that you actually care about - flight_id=flight.id
+                    flight id is the variable that you were using in applicationpy
+                -->
+                <a href="{{ url_for('flight', flight_id=flight.id) }}">
+                    {{ flight.origin }} to {{ flight.destination }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
