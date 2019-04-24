@@ -8,7 +8,7 @@ from flask_wtf import Form, FlaskForm
 from wtforms import TextField
 from forms import ContactForm
 
-app = Flask(__name__, template_folder='templates', instance_relative_config=True)
+app = Flask(__name__, instance_relative_config=True)
 app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskDraft.sqlite'),
@@ -57,9 +57,26 @@ def reflections():
 def goals():
 	return render_template("goals.html", title = "Goals")
 
-@app.route("/index")
-def index():
-	return render_template("index.html", title = "d")
+@app.route("/contact1")
+def contact1():
+	return render_template("contact1.html", title = "contact1")
+
+@app.route("/draft")
+def draft():
+	return render_template("draft.html", title = "draft")
+
+@app.route("/process")
+def process():
+	return render_template("process.html", title = "process")
+
+@app.route("/store")
+def store():
+	return render_template("store.html", title = "store")
+
+@app.route("/testing_home")
+def testing_home():
+	return render_template("testing_home.html", title = "testing_home")
+
 
 @app.route("/philmed")
 def philmed():
@@ -86,11 +103,11 @@ def contact():
 			title = 'Contact Us',
 			form = form)
 	
-
+"""
 @app.errorhandler(404)
 def page_not_found(error):
 	return render_template("404.html", title = "404"), 404
-
+"""
 
 
 

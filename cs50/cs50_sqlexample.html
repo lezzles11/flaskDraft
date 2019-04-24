@@ -1,0 +1,34 @@
+{% extends "bootstrap/layout.html" %}
+
+{% block body %}
+    <h1>Book a Flight</h1>
+    <!-- when submit form, take them to the book url; method submit is post when submitting data  -->
+    <form action="{{ url_for('book') }}" method="post">
+
+        <div class="form-group">
+            <!-- select is drop down menu; form control is just bootstrap; 
+                give this name - flight id - in python code, you will reference the name later -->
+            <select class="form-control" name="flight_id">
+                <!-- Loop through ALL THE FLIGHTS. For each flight, -->
+                {% for flight in flights %}
+                <!-- this means flight id- drop down menu 
+                just the idea of the flight - the text is flight.origin to flight.destination. 
+                double curly in templating language - plug in value. 
+                flight is the name of that row.origin -> column. 
+                row.column -- >
+                    <option value="{{ flight.id }}">{{ flight.origin }} to {{ flight.destination }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <!-- Passenger can fill out their name -->
+            <input class="form-control" name="name" placeholder="Passenger Name">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Book Flight</button>
+        </div>
+
+    </form>
+{% endblock %}
