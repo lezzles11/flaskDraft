@@ -58,6 +58,7 @@
 
 
     <div>
+      <h1>Coding for normal fucking humans</h1>
       <table>
         <th>Word Definitions</th>
         <th>Definition</th>
@@ -67,6 +68,7 @@
             <td>You may be working on a computer; github is the "remote" repository. You can then download <br>
               Upload changes on remote (or github) - it can be in any location  <br>
               Remote can be on another computer, even. <br> 
+              <br> Making a duplicate means remote, honestly. 
               To pull something off of git: 
               git clone (insert url) 
               <br>
@@ -75,10 +77,35 @@
               git config --local user.email "(insert email)"
 
               <br>
+              git remote -v (to see the remotes you have)
+              <br>
+              git pull (remote) (branch)
+              <br>
+              git remote add (url of your github)
+              <br> 
+              git commit -m "Comment about what changes you made"
+              <br>
+              git status - see what the fuck is going on 
+              <br>
+              1. git checkout (branch)
+              2. git merge (branch that you made)
+              <br>
+              git push (remote) (branch)
 
-              will retrieve project
             </td>
-            <td>Save changes and make sure you can go back to other versions (just in case you fuck up big time)</td>
+            <td>Save changes and make sure you can go back to other versions <br> (just in case you fuck up big time)</td>
+        </tr>
+        <tr>
+          <td>Git branches</td>
+            <td>git branch (branch name) - creating new branch <br> git checkout (new branch) - going to the new branch <br>
+              git commit -m "created new branch" - need to fucking save that shit <br> git checkout -b feature/new-feature (reference off the develop branch) 
+              <br> git checkout feature/new-feature <br> git commit -m "done" <br> git checkout develop <br> </td>
+              <td>You can say, developer a, work on this branch. Developer b: work on this branch. <br> ALL  CHANGES ARE FUCKING ISOLATED, MAN!! </td>
+        </tr>
+        <tr>
+          <td></td>
+            <td></td>
+              <td></td>
         </tr>
       </table>
     </div>
