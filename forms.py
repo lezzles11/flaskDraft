@@ -1,6 +1,6 @@
-from flask_wtf import Form
-from wtforms import TextField, IntegerField, StringField, SelectField, DateField, TextAreaField, SubmitField, BooleanField, validators
-from wtforms.validators import Required, DataRequired, ValidationError
+from flask_wtf import Form, FlaskForm
+from wtforms import TextField, IntegerField, StringField, SelectField, DateField, TextAreaField, SubmitField, BooleanField, validators, PasswordField
+from wtforms.validators import Required, DataRequired, ValidationError, Length, Email, EqualTo
 
 class philmed(Form):
    name = TextField("Name Of Student",[validators.Required("Please enter your name.")])
@@ -21,3 +21,22 @@ class ContactForm(Form):
    subject = TextField('Subject', [validators.DataRequired("What's the nature of your message?")])
    message = TextAreaField('Message', [validators.DataRequired("Didn't you want to say something?")])
    submit = SubmitField('Send')
+
+
+class RegistrationForm(FlaskForm):
+    username = StringField('Username',
+                           validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password',
+                                     validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Sign Up')
+
+
+class LoginForm(FlaskForm):
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')

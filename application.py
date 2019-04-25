@@ -1,22 +1,32 @@
 import os
 from flask import Flask, render_template, request, flash, redirect, url_for
-from app import app
 from flask_bootstrap import Bootstrap
 from flaskext.sass import sass
 from flask_mail import Mail, Message
-from flask_wtf import Form, FlaskForm
+from flask_wtf import Form
 from wtforms import TextField
-from forms import ContactForm
+from forms import ContactForm, RegistrationForm, LoginForm
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime 
 
 app = Flask(__name__, instance_relative_config=True)
+db = SQLAlchemy(app)
+bootstrap = Bootstrap(app)
+sass(app, input_dir='assets/scss', output_dir='static/css')
+
+
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+
+
+
+
+
 app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskDraft.sqlite'),
     )
-bootstrap = Bootstrap(app)
-sass(app, input_dir='assets/scss', output_dir='static/css')
-SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
 
 mail = Mail(app)
 
@@ -28,6 +38,57 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
+
+
+class User(db.Model):
+	__tablename__ = 'users'
+	id = db.Column(db.Integer, primary_key=True)
+	username = db.Column(db.String(64), index=True, unique=True, nullable=False)
+	email = db.Column(db.String(120), index=True, unique=True, nullable=False)
+	image_file = db.Column(db.String(20), nullable=False)
+	password = db.Column(db.String(60), nullable=False)
+	#User has relationship with post model 
+	posts = db.relationship('Post', backref='author', lazy=True)
+	def __repr__(self):
+		return f"User('{self.username}', '{self.email}', '{self.image_file}')" 
+
+class Post(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	title = db.Column(db.String(100), nullable=False)
+	date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+	content = db.Column(db.Text, nullable=False)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id', nullable=False))
+	def __repr__(self):
+		return f"User('{self.title}', '{self.date_posted}')" 
+
+
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('home'))
+    return render_template('register.html', title='Register', form=form)
+
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login Unsuccessful. Please check username and password', 'danger')
+    return render_template('login.html', title='Login', form=form)
+
+
+@app.route('/delete/')
+def delete():
+    u = User.query.get(i)
+    db.session.delete(u)
+    db.session.commit()
+    return "user deleted"
 
 @app.route("/")
 def more():
