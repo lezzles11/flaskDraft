@@ -7,17 +7,11 @@ from flask_wtf import Form
 from wtforms import TextField
 from forms import ContactForm, RegistrationForm, LoginForm
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, MetaData, Table
-from database import db_session
-import models
-
-@app.teardown_appcontext
-def shutdown_session(exception=None):
-    db_session.remove()
 
 app = Flask(__name__, instance_relative_config=True)
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
+
 sass(app, input_dir='assets/scss', output_dir='static/css')
 
 
@@ -25,7 +19,7 @@ SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 
-
+"""
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -56,17 +50,6 @@ class Category(db.Model):
     def __repr__(self):
         return '<Category %r>' % self.name
 
-
-mail = Mail(app)
-
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'lesley.yc@gmail.com'
-app.config['MAIL_PASSWORD'] = 'Retire69!'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-
-
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -94,6 +77,18 @@ def delete():
     db.session.delete(u)
     db.session.commit()
     return "user deleted"
+"""
+
+mail = Mail(app)
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'lesley.yc@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Retire69!'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
+
 
 @app.route("/")
 def more():
@@ -123,25 +118,6 @@ def reflections():
 def goals():
 	return render_template("goals.html", title = "Goals")
 
-@app.route("/contact1")
-def contact1():
-	return render_template("contact1.html", title = "contact1")
-
-@app.route("/draft")
-def draft():
-	return render_template("draft.html", title = "draft")
-
-@app.route("/process")
-def process():
-	return render_template("process.html", title = "process")
-
-@app.route("/store")
-def store():
-	return render_template("store.html", title = "store")
-
-@app.route("/testing_home")
-def testing_home():
-	return render_template("testing_home.html", title = "testing_home")
 
 
 @app.route("/philmed")

@@ -1,4 +1,5 @@
-from datetime import datetime 
+"""
+
 from sqlalchemy import Table, Column, Integer, String
 from sqlalchemy.orm import mapper
 from database import Base, metadata, db_session
@@ -54,3 +55,5 @@ users = Table('users', metadata,
     Column('email', String(120), unique=True)
 )
 mapper(User, users)
+
+"""
