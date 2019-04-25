@@ -7,7 +7,13 @@ from flask_wtf import Form
 from wtforms import TextField
 from forms import ContactForm, RegistrationForm, LoginForm
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime 
+from sqlalchemy import create_engine, MetaData, Table
+from database import db_session
+import models
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
 
 app = Flask(__name__, instance_relative_config=True)
 db = SQLAlchemy(app)
@@ -42,7 +48,6 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post %r>' % self.title
-
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
