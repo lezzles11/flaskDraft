@@ -25,7 +25,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #stopping it from complaining 
 #Initialize the databse (or, start the database)
 
-
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
 
 db = SQLAlchemy(app)
 #start the marshmallow
@@ -129,8 +130,7 @@ def delete_philMed(id):
 
 
 """
-SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
