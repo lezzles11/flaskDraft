@@ -20,13 +20,37 @@ app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    pub_date = db.Column(db.DateTime, nullable=False,
+        default=datetime.utcnow)
+
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'),
+        nullable=False)
+    category = db.relationship('Category',
+        backref=db.backref('posts', lazy=True))
+
+    def __repr__(self):
+        return '<Post %r>' % self.title
 
 
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
 
-app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskDraft.sqlite'),
-    )
+    def __repr__(self):
+        return '<Category %r>' % self.name
+
 
 mail = Mail(app)
 
@@ -36,30 +60,6 @@ app.config['MAIL_USERNAME'] = 'lesley.yc@gmail.com'
 app.config['MAIL_PASSWORD'] = 'Retire69!'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
-
-mail = Mail(app)
-
-
-class User(db.Model):
-	__tablename__ = 'users'
-	id = db.Column(db.Integer, primary_key=True)
-	username = db.Column(db.String(64), index=True, unique=True, nullable=False)
-	email = db.Column(db.String(120), index=True, unique=True, nullable=False)
-	image_file = db.Column(db.String(20), nullable=False)
-	password = db.Column(db.String(60), nullable=False)
-	#User has relationship with post model 
-	posts = db.relationship('Post', backref='author', lazy=True)
-	def __repr__(self):
-		return f"User('{self.username}', '{self.email}', '{self.image_file}')" 
-
-class Post(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	title = db.Column(db.String(100), nullable=False)
-	date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-	content = db.Column(db.Text, nullable=False)
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id', nullable=False))
-	def __repr__(self):
-		return f"User('{self.title}', '{self.date_posted}')" 
 
 
 @app.route("/register", methods=['GET', 'POST'])
