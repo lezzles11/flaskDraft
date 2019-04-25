@@ -8,48 +8,38 @@
 	{% if success %}
 	  <div class="alert alert-success">Your message has been sent.</div>
 	{% else %}
-		{% for message in form.firstName.errors %}
+		{% for philMed in form.title.errors %}
 	   	  <div class="flash alert alert-danger">{{ message }}</div>
 	 	{% endfor %}
 
-		{% for message in form.lastName.errors %}
+		{% for message in form.anxious.errors %}
 		  <div class="flash alert alert-danger">{{ message }}</div>
 		{% endfor %}
 		
-		{% for message in form.email.errors %}
+		{% for message in form.upset.errors %}
 		  <div class="flash alert alert-danger">{{ message }}</div>
 		{% endfor %}
 		 
-		{% for message in form.subject.errors %}
+		{% for message in form.excited.errors %}
 		  <div class="flash alert alert-danger">{{ message }}</div>
 		{% endfor %}
 		
-		{% for message in form.message.errors %}
-		  <div class="flash alert alert-danger">{{ message }}</div>
-		{% endfor %}
-<form action="{{ url_for('philMed') }}"	method="post" name="contact" role="form">
+<form action="{{ url_for('philMed') }}"	method="post" role="form">
 		{{form.hidden_tag()}}
 		<div class="form-inline row">
 		 <div class="form-group col-sm-6">
-		{{ form.firstName(class="form-control", placeholder="First Name", **{'data-validation':'required'}) }}
+		{{ form.title(class="form-control", placeholder="Title", **{'data-validation':'required'}) }}
 		 </div>
 		 <div class="form-group col-sm-6">
-		{{ form.lastName(class="form-control", placeholder="Last Name", **{'data-validation':'required'}) }}
-		 </div>
-		</div>
-		<br />
-		<div class="from-group">
-		 <div class="input-group">
-		  <div class="input-group-addon">@</div>
-		{{ form.email(class="form-control", placeholder="Enter email", **{'data-validation':'email'}) }}
+		{{ form.anxious(class="form-control", placeholder="Last Name", **{'data-validation':'required'}) }}
 		 </div>
 		</div>
 		<br />
 		<div class="form-group">
-		{{ form.subject(class="form-control", placeholder="Subject", **{'data-validation':'required'}) }}
+		{{ form.upset(class="form-control", placeholder="Subject", **{'data-validation':'required'}) }}
 		</div>
 		<div class="form-group">
-		{{ form.message(class="form-control", placeholder="What's on your mind?", **{'data-validation':'required'}) }}
+		{{ form.excited(class="form-control", placeholder="What's on your mind?", **{'data-validation':'required'}) }}
 		</div>
 		<div class="form-inline row">
 			<div class="form-group col-sm-6 col-sm-offset-6">
