@@ -39,13 +39,14 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ url_for('more') }}"> Home <span class="sr-only">(current)</span></a>
                 </li>
-
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('add_philMed') }}">Philosophical Meditation</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('reflections') }}">Reflections</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('goals') }}">Goals</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('thebeginning') }}">Week One</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('weektwo') }}">Week Two</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('weekthree') }}">Week Three</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('weekfour') }}">Week Four</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"></a></li>
 
 
@@ -79,16 +80,6 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav" style="font-size: 0.6em">
             <li><a href="{{ url_for('more') }}">Home</a></li>
-            <li><a href="{{ url_for('goals') }}">Goals</a></li>
-            <li><a href="{{ url_for('thebeginning') }}">Week One</a></li>
-            <li><a href="{{ url_for('weektwo') }}">Week Two</a></li>
-            <li><a href="{{ url_for('weekthree') }}">Week Three</a></li>
-            <li><a href="{{ url_for('weekfour') }}">Week Four</a></li>
-            <li><a href="{{ url_for('reflections') }}">Reflections</a></li>
-
-            <li><a href="{{ url_for('philmed') }}">Philosophical Meditation</a></li>
-
-            <li><a href="{{ url_for('contact') }}">Contact</a></li>
         </ul>
     </div>
 </nav>
