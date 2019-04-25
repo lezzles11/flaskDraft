@@ -7,19 +7,67 @@ from flask_wtf import Form
 from wtforms import TextField
 from forms import ContactForm, RegistrationForm, LoginForm
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow 
 
+#app core 
 app = Flask(__name__, instance_relative_config=True)
-db = SQLAlchemy(app)
-bootstrap = Bootstrap(app)
-
+#locating Database
+basedir = os.path.abspath(os.path.dirname(__file__))
+#converting scss to css 
 sass(app, input_dir='assets/scss', output_dir='static/css')
 
+#now, actually MAKING database
+#looking for a file called db.sqlite in the current folder structure 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
+#stopping it from complaining 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+#Initialize the databse (or, start the database)
+db = SQLAlchemy(app)
+
+#start the marshmallow
+#marshmallow helps you convert more complicated objects 
+ma = Marshmallow(app) 
+bootstrap = Bootstrap(app)
+
+
+class philMed(db.Model):
+	id = db.Column(dbInteger, primary_key=True)
+	title = db.Column(db.String(100), nullable=False)
+	date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+	anxious = db.Column(db.Text, nullable=False)
+	upset = db.Column(db.Text, nullable=False)
+	excited = db.Column(db.Text, nullable=False)
+
+#self = 
+#initializing the database 
+	def __init__(self, title, date_posted, anxious, upset, excited):
+		#when these are passed in, you want to add them to the instance 
+		self.title = title
+		self.date_posted = date_posted
+		self.anxious = anxious
+		self.upset = upset
+		self.excited = excited 
+
+#Marshmallow part 
+class philMedSchema(ma.Schema):
+	class Meta:
+		#what you want to show
+		fields = ('id', 'title', 'date_posted', 'anxious', 'upset', 'excited')
+
+#starting the schema 
+#strict = true (prevent the warning)
+
+philMed_schema = philMedSchema(strict=True)
+
+#dealing with more than one
+philMeds_schema = philMedSchema(many=True, strict=True)
+
+
+"""
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-
-"""
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -152,7 +200,7 @@ def page_not_found(error):
 """
 
 
-
+#run server 
 if __name__ == '__main__':
    app.run(debug = True)
 

@@ -961,3 +961,58 @@
    margin: 50px auto;
    text-align: center;
  }
+
+ .dictHeader {
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  color: beige;
+  color: beige;
+  text-shadow: 1.2px 1.2px teal;
+ }
+
+
+.dictWord {
+  text-align: center;
+  font-size: 0.8em;
+  text-align: center;
+  color: beige;
+  text-shadow: 1.2px 1.2px teal;
+
+}
+
+.dictDef {
+  text-align: center;
+  font-size: 0.8em;
+  text-align: center;
+  color: beige;
+  text-shadow: 1.2px 1.2px teal;
+}
+
+.dictCommands {
+  text-align: center;
+  font-size: 0.8em;
+  text-align: center;
+  color: beige;
+  text-shadow: 1.2px 1.2px teal;
+
+}
+
+.dictMatters {
+  text-align: center;
+  font-size: 0.8em;
+  text-align: center;
+  color: beige;
+  text-shadow: 1.2px 1.2px teal;
+
+}
+
+
+
+
+
+
+
+
+
+
