@@ -25,8 +25,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #stopping it from complaining 
 #Initialize the databse (or, start the database)
 
-SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
+SECRET_KEY = 'Retire69!'
 
 db = SQLAlchemy(app)
 #start the marshmallow

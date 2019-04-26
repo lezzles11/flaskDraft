@@ -1,9 +1,27 @@
-"""
-
+from application import db
 from sqlalchemy import Table, Column, Integer, String
 from sqlalchemy.orm import mapper
 from database import Base, metadata, db_session
 
+#self = 
+#initializing the database 
+class philMed(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    date_posted = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    anxious = db.Column(db.Text, nullable=False)
+    upset = db.Column(db.Text, nullable=False)
+    excited = db.Column(db.Text, nullable=False)
+
+    def __init__(self, title, date_posted, anxious, upset, excited):
+        #when these are passed in, you want to add them to the instance 
+        self.title = title
+        self.date_posted = date_posted
+        self.anxious = anxious
+        self.upset = upset
+        self.excited = excited
+
+"""
 class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
