@@ -95,7 +95,7 @@ def save_changes(philMed, form, new=False):
 
 @app.route("/philMed", methods=['POST'])
 def add_philMed():
-	form = philMedForm(request.form)
+	form = render_template('philMed.html', form=form)
 	if form.validate():
 		philMed = PhilMed()
 		save_changes(philMed, form, new=True)
