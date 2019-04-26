@@ -243,14 +243,32 @@
    color: rebeccapurple;
    font-size: 15px;
  }
+
+ .table-resources {
+   text-shadow: 1px 1px ghostwhite;
+   color: rebeccapurple;
+   font-size: 15px;
+ }
  
  .table-blue-text {
    text-shadow: 1px 1px ghostwhite;
    color: darkmagenta;
    font-size: 15px;
  }
+
+  .table-completed {
+   text-shadow: 1px 1px ghostwhite;
+   color: darkmagenta;
+   font-size: 15px;
+ }
  
- .table-course-text {
+ .table-intervals {
+   color: royalblue;
+   text-shadow: 1.2px 1.2px white;
+   font-size: 15px;
+ }
+
+  .table-course-text {
    color: royalblue;
    text-shadow: 1.2px 1.2px white;
    font-size: 15px;
