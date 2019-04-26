@@ -4,8 +4,8 @@ app = Flask(__name__)
 app.secret_key = 'development key'
 
 @app.route('/philmed', methods = ['GET', 'POST'])
-def philMed():
-   form = philMed()
+def philmed():
+   form = philmed()
    
    if request.method == 'POST':
       if form.validate() == False:

@@ -2,17 +2,12 @@ from flask_wtf import Form, FlaskForm
 from wtforms import TextField, IntegerField, StringField, SelectField, DateField, TextAreaField, SubmitField, BooleanField, validators, PasswordField
 from wtforms.validators import Required, DataRequired, ValidationError, Length, Email, EqualTo
 
-class philmed(Form):
-   name = TextField("Name Of Student",[validators.Required("Please enter your name.")])
-   Address = TextAreaField("Address")
-   
-   email = TextField("Email",[validators.Required("Please enter your email address."),
-      validators.Email("Please enter your email address.")])
-   
-   Age = IntegerField("age")
-   language = SelectField('Languages', choices = [('cpp', 'C++'), 
-      ('py', 'Python')])
-   submit = SubmitField("Send")
+class philMed(Form):
+   title = TextField("Title: ",[validators.Required("Just give it a little bit of a theme!~")])
+   anxious = TextAreaField("What are you anxious about?")
+   upset = TextField("What are you upset about?")
+   excited = TextAreaField("What are you excited about?")
+   submit = SubmitField("Submit")
 
 class ContactForm(Form):
    firstName = TextField('First Name', [validators.DataRequired("Enter your first name")])
@@ -22,7 +17,7 @@ class ContactForm(Form):
    message = TextAreaField('Message', [validators.DataRequired("Didn't you want to say something?")])
    submit = SubmitField('Send')
 
-
+"""
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
@@ -40,3 +35,5 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+"""

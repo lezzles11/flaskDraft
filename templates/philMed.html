@@ -2,6 +2,41 @@
 
 {% block body %}
 
+<a href="{{ url_for('.new_philMed') }}"> Phil Med </a>
+
+ 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+{% from "_formhelpers.html" import render_field %}
+<form method="post" role="form">
+  <dl>
+    {{ render_field(form.title) }}
+    {{ render_field(form.anxious) }}
+    {{ render_field(form.upset) }}
+    {{ render_field(form.excited) }}
+  </dl>
+  <p><input type=submit>
+</form>
+
+<p1>hi</p1>
+<form method="post" role="form">
+<input name="title" type="text" id="desc">
+<input name="anxious" type="text" value="{{ row }}">
+<input name="upset" type="text" size="140">
+<input name="excited" type="text" id="desc" value="{{ row }}" size="140">
+</form>
+
+
+		<!--
 <div class="container contact">
         <div class="row contact-fields">
             <div class="col-md-6 col-md-offset-3">
@@ -23,7 +58,7 @@
 		{% for message in form.excited.errors %}
 		  <div class="flash alert alert-danger">{{ message }}</div>
 		{% endfor %}
-		
+
 <form action="{{ url_for('philMed') }}"	method="post" role="form">
 		{{form.hidden_tag()}}
 		<div class="form-inline row">
@@ -47,9 +82,9 @@
 			</div>
 		</div>
 </form>
-			</div><!-- ./col-md-6 -->
-		</div><!-- ./ row -->
+			</div> 
+		</div> 
 	{% endif %}
-</div><!-- ./ contact -->
-
+</div> 
+-->
 {% endblock %}

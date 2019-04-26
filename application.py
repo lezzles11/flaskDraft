@@ -5,7 +5,7 @@ from flaskext.sass import sass
 from flask_mail import Mail, Message
 from flask_wtf import Form
 from wtforms import TextField
-from forms import ContactForm, RegistrationForm, LoginForm
+from forms import ContactForm, philMed
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy 
 from flask_marshmallow import Marshmallow 
