@@ -6,6 +6,7 @@ from database import Base, metadata, db_session
 #self = 
 #initializing the database 
 class philMed(db.Model):
+    __tablename__ = "philMed"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -13,13 +14,11 @@ class philMed(db.Model):
     upset = db.Column(db.Text, nullable=False)
     excited = db.Column(db.Text, nullable=False)
 
-    def __init__(self, title, date_posted, anxious, upset, excited):
-        #when these are passed in, you want to add them to the instance 
-        self.title = title
-        self.date_posted = date_posted
-        self.anxious = anxious
-        self.upset = upset
-        self.excited = excited
+    def __repr__(self):
+        return(f'{self.__class__.__name__}('f'{self.title!r}, {self.date_posted!r}, {self.anxious!r}, {self.upset!r}, {self.excited!r})')
+        
+    def __str__(self):
+        return f'{self.title}, {self.date_posted}, {self.anxious}, {self.upset}, {self.excited}'
 
 """
 class User(Base):

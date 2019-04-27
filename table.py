@@ -1,11 +1,13 @@
-from flask_table import Table, Col, LinkCol
+from flask_table import Table, Col
  
 class philMed(Table):
     id = Col('Id', show=False)
-    date_posted = Col('date')
-    title = Col('title')
-    upset = Col('Upset')
+    date_posted = Col('Date and Time')
+    title = Col('Title')
     anxious = Col('Anxious')
+    upset = Col('Upset')
     excited = Col('Excited')
-    edit = LinkCol('Edit', 'edit', url_kwargs=dict(id='id'))
-    delete = LinkCol('Delete', 'delete', url_kwargs=dict(id='id'))
+
+
+
+    

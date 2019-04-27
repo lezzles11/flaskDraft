@@ -1,0 +1,18 @@
+{% extends "bootstrap/layout.html" %}
+
+{% block body %}
+
+<title>New </title>
+
+{% from "_formhelpers.html" import render_field %}
+<form method=post>
+    <dl>
+    {{ render_field(form.title) }}
+    {{ render_field(form.anxious) }}
+    {{ render_field(form.upset) }}
+    {{ render_field(form.excited) }}
+    </dl>
+    <p><input type=submit value=Submit>
+</form>
+
+{% endblock %}

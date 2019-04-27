@@ -1,10 +1,10 @@
 {% extends "bootstrap/layout.html" %}
 
 {% block body %}
-
-<a href="{{ url_for('.new_philMed') }}"> Phil Med </a>
-
- 
+<doctype html>
+<title>Search Results - Flask Music Database</title>
+{{ table }}
+ <!--
 {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
@@ -14,6 +14,13 @@
     </ul>
   {% endif %}
 {% endwith %}
+<p1>hi</p1>
+<form method="post" role="form">
+<input name="title" type="text" id="desc">
+<input name="anxious" type="text" value="{{ row }}">
+<input name="upset" type="text" size="140">
+<input name="excited" type="text" id="desc" value="{{ row }}" size="140">
+</form>
 
 
 {% from "_formhelpers.html" import render_field %}
@@ -27,15 +34,8 @@
   <p><input type=submit>
 </form>
 
-<p1>hi</p1>
-<form method="post" role="form">
-<input name="title" type="text" id="desc">
-<input name="anxious" type="text" value="{{ row }}">
-<input name="upset" type="text" size="140">
-<input name="excited" type="text" id="desc" value="{{ row }}" size="140">
-</form>
 
-
+--> 
 		<!--
 <div class="container contact">
         <div class="row contact-fields">

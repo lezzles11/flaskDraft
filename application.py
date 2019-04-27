@@ -3,13 +3,15 @@ from flask import Flask, render_template, request, flash, redirect, url_for, jso
 from flask_bootstrap import Bootstrap
 from flaskext.sass import sass
 from flask_mail import Mail, Message
-from flask_wtf import Form
-from wtforms import TextField
 from forms import ContactForm, philMed
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy 
-from flask_marshmallow import Marshmallow 
 import datetime
+from db_setup import init_db, db_session
+from table import philMed
+from models import philMed
+from marshmallow import fields, Schema, validates, ValidationError
+
 
 #app core 
 app = Flask(__name__, instance_relative_config=True)
@@ -30,28 +32,13 @@ SECRET_KEY = 'Retire69!'
 db = SQLAlchemy(app)
 #start the marshmallow
 #marshmallow helps you convert more complicated objects 
-ma = Marshmallow(app) 
+#ma = Marshmallow(app) 
 bootstrap = Bootstrap(app)
 
-#self = 
-#initializing the database 
-class philMed(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	title = db.Column(db.String(100), nullable=False)
-	date_posted = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-	anxious = db.Column(db.Text, nullable=False)
-	upset = db.Column(db.Text, nullable=False)
-	excited = db.Column(db.Text, nullable=False)
 
-	def __init__(self, title, date_posted, anxious, upset, excited):
-		#when these are passed in, you want to add them to the instance 
-		self.title = title
-		self.date_posted = date_posted
-		self.anxious = anxious
-		self.upset = upset
-		self.excited = excited 
 
 #Marshmallow part 
+"""
 class philMedSchema(ma.Schema):
 	class Meta:
 		#what you want to show
@@ -65,7 +52,7 @@ philMed_schema = philMedSchema(strict=True)
 
 #dealing with more than one
 philMeds_schema = philMedSchema(many=True, strict=True)
-
+"""
 #POST -> send or whatever. 
 @app.route("/philMed", methods=['POST'])
 def add_philMed():
@@ -139,27 +126,6 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80), nullable=False)
-    body = db.Column(db.Text, nullable=False)
-    pub_date = db.Column(db.DateTime, nullable=False,
-        default=datetime.utcnow)
-
-    category_id = db.Column(db.Integer, db.ForeignKey('category.id'),
-        nullable=False)
-    category = db.relationship('Category',
-        backref=db.backref('posts', lazy=True))
-
-    def __repr__(self):
-        return '<Post %r>' % self.title
-
-class Category(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-
-    def __repr__(self):
-        return '<Category %r>' % self.name
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
