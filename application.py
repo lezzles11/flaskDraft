@@ -1,7 +1,6 @@
 import os
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify
 from flask_bootstrap import Bootstrap
-from flaskext.sass import sass
 from flask_mail import Mail, Message
 from flask_wtf import Form
 from wtforms import TextField
@@ -16,7 +15,6 @@ app = Flask(__name__, instance_relative_config=True)
 #locating Database
 basedir = os.path.abspath(os.path.dirname(__file__))
 #converting scss to css 
-sass(app, input_dir='assets/scss', output_dir='static/css')
 #now, actually MAKING database
 #looking for a file called db.sqlite in the current folder structure 
 
