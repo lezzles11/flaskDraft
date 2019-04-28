@@ -229,6 +229,12 @@ def goals():
 	return render_template("goals.html", title = "Goals")
 
 
+@app.route("/practiceForm")
+def practiceForm():
+	return render_template("practiceForm.html", title = "Practice Form")
+
+
+
 """
 #POST -> send or whatever. 
 @app.route("/philMed", methods=['POST'])
