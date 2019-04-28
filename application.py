@@ -228,12 +228,33 @@ def reflections():
 def goals():
 	return render_template("goals.html", title = "Goals")
 
-
-@app.route("/practiceForm")
+@app.route("/practiceForm", methods=["POST", "GET"])
 def practiceForm():
-	return render_template("practiceForm.html", title = "Practice Form")
+    if request.method == "POST":
+        username = request.form['username']        
+        age = request.form['age']        
+        email = request.form['email']        
+        hobbies = request.form['hobbies']        
+        return redirect(url_for("practiceData",                              
+                                username=username,
+                                age=age,
+                                email=email,   
+                                hobbies=hobbies))  
+    return render_template("practiceForm.html", title = "Practice Form")
 
-
+@app.route("/practiceData", methods=["GET"])
+def practiceData():
+    username = request.args.get('username')    
+    age = request.args.get('age')    
+    email = request.args.get('email')    
+    hobbies = request.args.get('hobbies')    
+    return render_template("practiceData.html",
+                           username=username,                         
+                           age=age,                          
+                           email=email,                         
+                           hobbies=hobbies
+                           )
+    
 
 """
 #POST -> send or whatever. 
