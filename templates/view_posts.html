@@ -1,0 +1,11 @@
+{% extends "bootstrap/layout.html" %}
+
+{% block body %}
+
+    <h1>Posts</h1>
+    {% for i in posts %}
+    <h1>Post Title : {{ i.title }}</h1>
+    <p>Description : {{ i.post_text }}</p>
+    <hr>
+    {% endfor %}
+{% endblock %}

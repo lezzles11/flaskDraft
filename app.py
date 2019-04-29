@@ -2,18 +2,31 @@ import os
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail, Message
-from flask_wtf import Form
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 import datetime
+from flask_wtf import FlaskForm
+from wtforms import StringField
+from wtforms.validators import DataRequired
 
 #app core 
 app = Flask(__name__, instance_relative_config=True)
 
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://localhost/practicedb'
-SQLALCHEMY_TRACK_MODIFICATIONS = True
+POSTGRES = {
+	'user': 'postgres',
+	'pw': 'orange',
+	'db': 'post',
+	'host': 'localhost',
+	'port': '5432',
+}
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
+%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+app.config.update(dict(
+	SECRET_KEY="orange",
+	WTF_CSRF_SECRET_KEY="orange"
+))
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -22,24 +35,22 @@ manager.add_command('db', MigrateCommand)
 
 bootstrap = Bootstrap(app)
 
+
 class Post(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    title = db.Column(db.String(80), unique=True)
-    post_text = db.Column(db.String(255))
+	__tablename__ = 'post'
+	id = db.Column(db.Integer(), primary_key=True)
+	title = db.Column(db.String(80), unique=True)
+	post_text = db.Column(db.String(255))
 
-    def __init__(self, title, post_text):
-        self.title = title
-        self.post_text = post_text
+	def __init__(self, title, post_text):
+		self.title = title
+		self.post_text = post_text
 
-POSTGRES = {
-    'user': 'postgres',
-    'pw': 'password',
-    'db': 'my_database',
-    'host': 'localhost',
-    'port': '5432',
-}
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
-%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+class PostForm(FlaskForm):
+	title = StringField('Title', validators=[DataRequired()])
+	post_text = StringField('Post_Text',                            
+							 validators=[DataRequired()]
+						   )
 
 mail = Mail(app)
 
@@ -85,32 +96,48 @@ def page_not_found(error):
 
 @app.route("/practiceForm", methods=["POST", "GET"])
 def practiceForm():
-    if request.method == "POST":
-        username = request.form['username']        
-        age = request.form['age']        
-        email = request.form['email']        
-        hobbies = request.form['hobbies']        
-        return redirect(url_for("practiceData",                              
-                                username=username,
-                                age=age,
-                                email=email,   
-                                hobbies=hobbies))  
-    return render_template("practiceForm.html", title = "Practice Form")
+	if request.method == "POST":
+		username = request.form['username']        
+		age = request.form['age']        
+		email = request.form['email']        
+		hobbies = request.form['hobbies']        
+		return redirect(url_for("practiceData",                              
+								username=username,
+								age=age,
+								email=email,   
+								hobbies=hobbies))  
+	return render_template("practiceForm.html", title = "Practice Form")
 
 @app.route("/practiceData", methods=["GET"])
 def practiceData():
-    username = request.args.get('username')    
-    age = request.args.get('age')    
-    email = request.args.get('email')    
-    hobbies = request.args.get('hobbies')    
-    return render_template("practiceData.html",
-                           username=username,                         
-                           age=age,                          
-                           email=email,                         
-                           hobbies=hobbies
-    )
+	username = request.args.get('username')    
+	age = request.args.get('age')    
+	email = request.args.get('email')    
+	hobbies = request.args.get('hobbies')    
+	return render_template("practiceData.html",
+						   username=username,                         
+						   age=age,                          
+						   email=email,                         
+						   hobbies=hobbies
+	)
 
+@app.route('/addpost', methods=['GET', 'POST'])
+def add_post():
+	postform = PostForm()
+	if request.method == 'POST':
+		pf = Post(
+			postform.title.data,
+			postform.post_text.data,
+			)
+		db.session.add(pf)
+		db.session.commit()
+		return redirect(url_for('view_posts'))
+	return render_template('post_form.html', postform = postform)
 
+@app.route('/posts', methods=['GET', 'POST'])
+def view_posts():
+	posts = Post.query.all()
+	return render_template('view_posts.html', posts=posts)
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
@@ -139,7 +166,7 @@ def contact():
 
 #run server 
 if __name__ == '__main__':
-   app.run(debug = True)
+   manager.run()
 
 
 
