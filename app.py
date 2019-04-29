@@ -13,19 +13,6 @@ from wtforms.validators import DataRequired
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['DEBUG'] = True
-POSTGRES = {
-	'user': 'postgres',
-	'pw': 'orange',
-	'db': 'post',
-	'host': 'localhost',
-	'port': '5432',
-}
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
-%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
-app.config.update(dict(
-	SECRET_KEY="orange",
-	WTF_CSRF_SECRET_KEY="orange"
-))
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -34,22 +21,6 @@ manager.add_command('db', MigrateCommand)
 
 bootstrap = Bootstrap(app)
 
-
-class Post(db.Model):
-	__tablename__ = 'post'
-	id = db.Column(db.Integer(), primary_key=True)
-	title = db.Column(db.String(80), unique=True)
-	post_text = db.Column(db.String(255))
-
-	def __init__(self, title, post_text):
-		self.title = title
-		self.post_text = post_text
-
-class PostForm(FlaskForm):
-	title = StringField('Title', validators=[DataRequired()])
-	post_text = StringField('Post_Text',                            
-							 validators=[DataRequired()]
-						   )
 
 mail = Mail(app)
 
