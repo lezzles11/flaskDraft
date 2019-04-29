@@ -10,9 +10,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
 
-#app core 
-app = Flask(__name__, instance_relative_config=True)
-
+app = Flask(__name__)
+basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['DEBUG'] = True
 POSTGRES = {
 	'user': 'postgres',
@@ -161,12 +160,7 @@ def contact():
 	
 
 
-
-
-
-#run server 
 if __name__ == '__main__':
-   manager.run()
-
+    app.run(debug=True)
 
 
